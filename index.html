@@ -1889,7 +1889,7 @@ img,svg,a{-webkit-user-drag:none}
 <div id="dlg" class="hide"></div>
 <div id="toast" role="status"></div>
 
-<script>window.BO_VER='1.15';window.BO_FIREBASE_CONFIG={"apiKey": "AIzaSyDvsab_8P_Bf_Sr4OZrvFQDF7TPfKoTQck", "authDomain": "betting-omok-5e0c2.firebaseapp.com", "projectId": "betting-omok-5e0c2", "storageBucket": "betting-omok-5e0c2.firebasestorage.app", "messagingSenderId": "1058641815494", "appId": "1:1058641815494:web:c32dccf8188df54b69b4c7"};(()=>{let res;const p=new Promise(r=>res=r);window.__BO_FB={resolve:res};window.claude={use:n=>p.then(x=>x[n]||null)}})();</script>
+<script>window.BO_VER='1.16';window.BO_FIREBASE_CONFIG={"apiKey": "AIzaSyDvsab_8P_Bf_Sr4OZrvFQDF7TPfKoTQck", "authDomain": "betting-omok-5e0c2.firebaseapp.com", "projectId": "betting-omok-5e0c2", "storageBucket": "betting-omok-5e0c2.firebasestorage.app", "messagingSenderId": "1058641815494", "appId": "1:1058641815494:web:c32dccf8188df54b69b4c7"};(()=>{let res;const p=new Promise(r=>res=r);window.__BO_FB={resolve:res};window.claude={use:n=>p.then(x=>x[n]||null)}})();</script>
 <script>// 베팅 오목 — Firebase 연결 어댑터(웹·어플 버전 전용, claude.ai 아티팩트에는 넣지 않음)
 // window.claude.use('db'|'user'|'room')를 같은 모양으로 Firebase(익명 로그인 + Firestore)에 연결한다.
 (async()=>{
@@ -6757,6 +6757,10 @@ setTimeout(()=>{try{stgTile()}catch(e){}},0);
  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();ev=e;card('홈 화면에서 바로 열기','설치',doPrompt);
   if(want||(!hidden()&&!sheetSeen()))whenFree(()=>{if(ev)sheet('<ul><li><i></i>주소창 없이 전체 화면으로</li><li><i></i>설치는 몇 초 · 용량 거의 없음</li></ul>',doPrompt)})});
  window.addEventListener('appinstalled',hide);
+ // 안드로이드인데 설치 신호가 안 오면(링크로 연 맞춤 탭 등): 크롬에서 열도록 안내. 신호가 오면 위 카드가 설치 버튼으로 바뀜
+ if(isAnd&&!inApp)setTimeout(()=>{if(ev||document.getElementById('instCard'))return;
+  if(navigator.getInstalledRelatedApps)navigator.getInstalledRelatedApps().then(a=>{if(!a||!a.length)card("⋮ 메뉴 → 'Chrome에서 열기' 후 설치")}).catch(()=>card("⋮ 메뉴 → 'Chrome에서 열기' 후 설치"));
+  else card("⋮ 메뉴 → 'Chrome에서 열기' 후 설치")},4000);
  const ready=f=>document.readyState==='loading'?document.addEventListener('DOMContentLoaded',f):f();
  ready(()=>{
   if(inApp&&(isKakao||isAnd)){
