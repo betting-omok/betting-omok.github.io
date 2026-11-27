@@ -43,6 +43,7 @@ sw='''// 베팅 오목 서비스 워커 (버전 '''+VER+''')
 const C='bo-'''+VER+'''';
 self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(C).then(c=>c.addAll(['./','index.html','manifest.json','icons/icon-192.png']).catch(()=>{})))});
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
+self.addEventListener('notificationclick',e=>{e.notification.close();const u=e.notification.data&&e.notification.data.url;if(u)e.waitUntil(clients.openWindow(u))});
 self.addEventListener('fetch',e=>{const u=new URL(e.request.url);
  if(e.request.method!=='GET'||u.origin!==location.origin||u.pathname.endsWith('version.json'))return;
  e.respondWith((e.request.mode==='navigate'?fetch(e.request.url,{cache:'no-cache',credentials:'same-origin'}):fetch(e.request)).then(r=>{if(r.ok&&(e.request.mode==='navigate'||/\\.(png|jpg|json|html)$/.test(u.pathname))){const cp=r.clone();caches.open(C).then(c=>c.put(e.request,cp))}return r})
