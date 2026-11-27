@@ -25,7 +25,7 @@ head=(# 글꼴은 한 곳에서, 화면 그리기를 막지 않게(먼저 기본
  '<meta property="og:image" content="'+BASE+'thumb.jpg">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n'
  '<meta property="og:image:alt" content="베팅 오목 대국 화면">\n<meta name="twitter:card" content="summary_large_image">\n'
  '<link rel="icon" href="icons/icon-192.png">\n<link rel="apple-touch-icon" href="icons/apple-180.png">\n'
- '<link rel="manifest" href="manifest.json">\n<meta name="theme-color" content="#0f1716">\n')
+ '<meta name="apple-mobile-web-app-title" content="베팅 오목 V1.1">\n<link rel="manifest" href="manifest.json">\n<meta name="theme-color" content="#0f1716">\n')
 j=src.index('</head>');src=src[:j]+head+src[j:]
 i=src.index("<script>")
 out=src[:i]+boot+src[i:]
@@ -33,7 +33,7 @@ inst=open('/home/claude/firebase/web-install.js').read()
 k=out.rindex('</body>');out=out[:k]+'<script>'+inst+'</script>\n'+out[k:]
 os.makedirs('/home/claude/web',exist_ok=True)
 open('/home/claude/web/index.html','w').write(out)
-man={"id":"./","name":"베팅 오목","short_name":"베팅 오목","description":"베팅 승자가 착수하는 2인 전략 오목","lang":"ko","start_url":"./","scope":"./","display":"standalone","background_color":"#0f1716","theme_color":"#0f1716",
+man={"id":"./","name":"베팅 오목 V1.1","short_name":"베팅 오목 V1.1","description":"베팅 승자가 착수하는 2인 전략 오목","lang":"ko","start_url":"./","scope":"./","display":"standalone","background_color":"#0f1716","theme_color":"#0f1716",
  "screenshots":[{"src":"shots/s1.png","sizes":"1080x1920","type":"image/png","form_factor":"narrow","label":"홈"},{"src":"shots/s2.png","sizes":"1080x1920","type":"image/png","form_factor":"narrow","label":"베팅"},{"src":"shots/s3.png","sizes":"1080x1920","type":"image/png","form_factor":"narrow","label":"개봉"},{"src":"shots/s4.png","sizes":"1080x1920","type":"image/png","form_factor":"narrow","label":"결과"}],
  "categories":["games"],"related_applications":[{"platform":"webapp","url":"https://betting-omok.github.io/manifest.json"}],"icons":[{"src":"icons/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},{"src":"icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any"},{"src":"icons/maskable-512.png","sizes":"512x512","type":"image/png","purpose":"maskable"}]}
 open('/home/claude/web/manifest.json','w').write(json.dumps(man,ensure_ascii=False,indent=1))
