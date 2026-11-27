@@ -35,7 +35,7 @@ os.makedirs('/home/claude/web',exist_ok=True)
 open('/home/claude/web/index.html','w').write(out)
 man={"id":"./","name":"베팅 오목","short_name":"베팅 오목","description":"베팅 승자가 착수하는 2인 전략 오목","lang":"ko","start_url":"./","scope":"./","display":"standalone","background_color":"#0f1716","theme_color":"#0f1716",
  "screenshots":[{"src":"shots/s1.png","sizes":"1080x1920","type":"image/png","form_factor":"narrow","label":"홈"},{"src":"shots/s2.png","sizes":"1080x1920","type":"image/png","form_factor":"narrow","label":"베팅"},{"src":"shots/s3.png","sizes":"1080x1920","type":"image/png","form_factor":"narrow","label":"개봉"},{"src":"shots/s4.png","sizes":"1080x1920","type":"image/png","form_factor":"narrow","label":"결과"}],
- "categories":["games"],"icons":[{"src":"icons/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},{"src":"icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any"},{"src":"icons/maskable-512.png","sizes":"512x512","type":"image/png","purpose":"maskable"}]}
+ "categories":["games"],"related_applications":[{"platform":"webapp","url":"https://betting-omok.github.io/manifest.json"}],"icons":[{"src":"icons/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},{"src":"icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any"},{"src":"icons/maskable-512.png","sizes":"512x512","type":"image/png","purpose":"maskable"}]}
 open('/home/claude/web/manifest.json','w').write(json.dumps(man,ensure_ascii=False,indent=1))
 json.dump({'v':VER},open('/home/claude/web/version.json','w'))
 # 서비스 워커: 화면 파일은 '인터넷 먼저, 안 되면 저장해 둔 것' → 업데이트는 바로, 오프라인에서도 열림
